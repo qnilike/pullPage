@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.3/jquery.fullpage.css">
+	<style>
+		body{
+			color:#fff;
+		}
+		/* .section1{
+			background: red;
+		}
+		.section2{
+			background: gray;
+		}
+		.section3{
+			background: orange;
+		}
+		.section4{
+			background: #f60;
+		} */
+		.slide{
+			text-align: center;
+		}
+		#header{
+			color: #fff;
+			position: fixed;
+			top:0;
+			left:50%;
+		}
+		#fullpageMenu{
+			position: fixed;
+			top:0;
+			z-index: 999;
+		}
+	</style>
+</head>
+<body>
+	<ul id="fullpageMenu">
+		<li data-menuanchor="page1" class="active">
+			<a href="#page1">1 section</a>
+		</li>
+		<li data-menuanchor="page2">
+			<a href="#page2">2 section</a>
+		</li>
+		<li data-menuanchor="page3">
+			<a href="#page3">3 section</a>
+		</li>
+		<li data-menuanchor="page4">
+			<a href="#page4">4 section</a>
+		</li>
+	</ul>
+	<div id="fullpage">
+		<div class="section section1">
+			<h1>这是第1屏</h1>
+		</div>
+		<div class="section section2">
+			<div class="slide">
+				slide1
+			</div>
+			<div class="slide">
+				slide2
+			</div>
+			<div class="slide">
+				slide3
+			</div>
+			<div class="slide">
+				slide4
+			</div>
+		</div>
+		<div class="section section3">
+			<h1>这是第3屏</h1>
+		</div>
+		<div class="section section4">
+			<h1>这是第4屏</h1>
+		</div>
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.0/jquery.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.3/jquery.fullpage.js"></script>
+	<script>
+		$(document).ready(function(){
+			$('#fullpage').fullpage({
+				sectionsColor:['red','gray','orange','#f60'],//设置section的颜色
+				controlArrows:false,//箭头来控制slide幻灯片，默认是true，在M端不需要设置为false，通过滑动操作
+				verticalCentered:true,//用来控制每一页的内容是否垂直居中，默认是true，一般保持默认值就行
+				resize:false,//字体是否随着窗口缩放而缩放，默认是false
+				scrollingSpeed:800,//滚动速度，单位为毫秒，默认为700
+				anchors:['page1','page2','page3','page4'],//定义锚链接，默认值为[],有了锚链接，用户就可以快速定位到要打开的某一页面，注意定义锚链接时，值不要和页面的任意id和name相同，尤其在ie浏览器下，定义时不需要加#
+				lockAnchors:false,//锁定锚链接，默认为false，如果设置为true，那么anchors定义的则没有效果
+				easing:'easeInOutCubic',//如果修改此项需要引入，jquery.easings或者jquery ui
+				css3:true,//是否支持css3 transforms来实现滚动，默认是true，浏览器若不支持用jq来代替css3
+				//loopTop:true,//滚动到顶部后是否连续滚动到底部，默认是false
+				//loopBottom:true,//滚动到底部后是否连续滚动回顶部，默认是false
+				//loopHorizontal:true,//横向slider幻灯片是否循环滚动，默认是true
+				autoScrolling:true,//是否使用插件的滚动方式，默认是true，如果是false，则会出现浏览器自带的滚动条，不会按页滚动，而是按照滚动条的默认行为来滚动
+				scrollBar:false,//是否包含滚动条，默认是false，如果设置为true，则会出现浏览器自带的滚动条，页面滚动还是按页滚动，但是滚动条的默认行为也是有效。
+				//paddingTop:'200px',//设置每一个section的顶部和底部的padding，默认都是0，一般需要设置一个固定在顶部或者底部的菜单、导航、元素等
+				//paddingBotttom:'100px',
+				fixedElements:'#header',//固定元素，默认为null，需要配置一个jq选择器，在页面滚动的时候，fixedElements设置的元素固定不动
+				keyboardScrolling:true,//是否可以使用键盘的导航键
+				touchSensitivity:'5',//在移动设备中滑动页面的敏感性，默认为5，是按着百分比来衡量，最高为100，越大则越难滑动
+				continuousVertical:false,//是否循环滚动，默认为false，若为true，页面会循环滚动，而不像loopTop或者loopBottom那样出现跳动，这个属性和loopTop、loopBottom不兼容，不要同时设置
+				animateAnchor:true,//锚链接是否控制滚动动画，默认是true，如果设置为false，则不会又动画
+				recordHistory:true,//是否记录历史，默认为true，可以记录页面滚动的历史，通过浏览器的前进后退来导航，注意如果设置了autoScrolling：false。那么这个配置也将关闭，即设置为false
+				menu:"#fullpageMenu",//绑定菜单，设定相关属性与anchors的值对应后，菜单可以控制滚动，默认为false，可以设置为菜单的jquery选择器
+				navigation:true,//是否显示导航，默认为false，如果设置为true，会显示小圆点，作为导航
+				navigationPosition:'right',//导航小圆点的位置，可以设置为left或者right
+				navigationTooltips:['page1','page2','page3','page4'],//导航小圆点的tooltips设置，默认为[],注意按照顺序设置
+				show
+			});
+		});
+	</script>
+</body>
+</html>
